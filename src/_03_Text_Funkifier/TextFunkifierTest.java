@@ -44,6 +44,6 @@ public class TextFunkifierTest {
 
     @Test
     public void testCustomString() {
-
+    	
     }
 }
