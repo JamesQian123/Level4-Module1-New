@@ -56,12 +56,31 @@ public class PolymorphWindow extends JPanel implements ActionListener {
 
     public static final int WIDTH = 900;
     public static final int HEIGHT = 600;
-
+    
+    Polymorph width;
+    Polymorph height;
+    
     private JFrame window;
     private Timer timer;
 
     Polymorph bluePoly;
-
+    public PolymorphWindow(Polymorph width, Polymorph height) {
+    	this.width = width;
+    	this.height = height;
+    }
+    
+    public void setWidth(Polymorph width) {
+    	this.width = width;
+    }
+    public static Polymorph getWidth(Polymorph width) {
+    	return width;
+    }
+    public void setHeight(Polymorph height) {
+    	this.height = height;
+    }
+    public static Polymorph getHeight(Polymorph height) {
+    	return height;
+    }
     public static void main(String[] args) {
         new PolymorphWindow().buildWindow();
     }

@@ -13,7 +13,15 @@ public class DemoClassForImplement implements TextFunkifier{
 	@Override
 	public String funkifyText() {
 		// TODO Auto-generated method stub
-		return null;
+		StringBuilder sb = new StringBuilder();
+		sb.append(unfunkifiedText);
+		char[] arr = sb.toString().toCharArray();
+		StringBuilder stb = new StringBuilder();
+		stb.append(arr[0]);
+		for(int i = 1; i < arr.length; i++) {
+			stb.append(Character.toUpperCase(arr[i]));
+		}
+		return stb.toString();
 	}
 
 }

@@ -44,6 +44,7 @@ public class TextFunkifierTest {
 
     @Test
     public void testCustomString() {
-    	
+    	DemoClassForImplement demo = new DemoClassForImplement("This is a test");
+    	assertEquals("THIS IS A TEST", demo.funkifyText());
     }
 }
