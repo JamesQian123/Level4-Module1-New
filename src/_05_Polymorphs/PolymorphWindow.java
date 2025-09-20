@@ -57,32 +57,34 @@ public class PolymorphWindow extends JPanel implements ActionListener {
     public static final int WIDTH = 900;
     public static final int HEIGHT = 600;
     
-    Polymorph width;
-    Polymorph height;
+    int width;
+    int height;
     
     private JFrame window;
     private Timer timer;
 
     Polymorph bluePoly;
-    public PolymorphWindow(Polymorph width, Polymorph height) {
+    Polymorph redPoly;
+    Polymorph mM;
+    public PolymorphWindow(int width, int height) {
     	this.width = width;
     	this.height = height;
     }
     
-    public void setWidth(Polymorph width) {
+    public void setWidth(int width) {
     	this.width = width;
     }
-    public static Polymorph getWidth(Polymorph width) {
+    public int getWidth() {
     	return width;
     }
-    public void setHeight(Polymorph height) {
+    public void setHeight(int height) {
     	this.height = height;
     }
-    public static Polymorph getHeight(Polymorph height) {
+    public int getHeight() {
     	return height;
     }
     public static void main(String[] args) {
-        new PolymorphWindow().buildWindow();
+        new PolymorphWindow(PolymorphWindow.WIDTH, PolymorphWindow.HEIGHT).buildWindow();
     }
 
     public void buildWindow() {
@@ -94,7 +96,8 @@ public class PolymorphWindow extends JPanel implements ActionListener {
         window.setVisible(true);
 
         bluePoly = new BluePolymorph(50, 50);
-
+        redPoly = new RedPolymorph(50,50);
+        mM = new MovingMorph(50,50);
         timer = new Timer(1000 / 30, this);
         timer.start();
     }
@@ -106,12 +109,15 @@ public class PolymorphWindow extends JPanel implements ActionListener {
 
         // draw polymorph
         bluePoly.draw(g);
+        redPoly.draw(g);
+        mM.draw(g);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         repaint();
         bluePoly.update();
+        mM.update();
 
     }
 }
