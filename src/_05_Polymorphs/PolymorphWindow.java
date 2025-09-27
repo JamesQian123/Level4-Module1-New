@@ -5,6 +5,9 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -66,9 +69,15 @@ public class PolymorphWindow extends JPanel implements ActionListener {
     Polymorph bluePoly;
     Polymorph redPoly;
     Polymorph mM;
+    Polymorph mousePoly;
+    Polymorph messagePoly;
+    ArrayList<Polymorph> poly = new ArrayList<Polymorph>();
+    
+    
     public PolymorphWindow(int width, int height) {
     	this.width = width;
     	this.height = height;
+  
     }
     
     public void setWidth(int width) {
@@ -85,6 +94,7 @@ public class PolymorphWindow extends JPanel implements ActionListener {
     }
     public static void main(String[] args) {
         new PolymorphWindow(PolymorphWindow.WIDTH, PolymorphWindow.HEIGHT).buildWindow();
+
     }
 
     public void buildWindow() {
@@ -96,10 +106,19 @@ public class PolymorphWindow extends JPanel implements ActionListener {
         window.setVisible(true);
 
         bluePoly = new BluePolymorph(50, 50);
-        redPoly = new RedPolymorph(50,50);
+        redPoly = new RedPolymorph(0,0);
         mM = new MovingMorph(50,50);
+        mousePoly = new MouseMoverPolymorph(60,100);
+        window.addMouseMotionListener((MouseMotionListener) mousePoly);
+        messagePoly = new MessageDialogPolymorph(100,100);
+        window.addMouseListener((MouseListener) messagePoly);
         timer = new Timer(1000 / 30, this);
         timer.start();
+        poly.add(bluePoly);
+        poly.add(redPoly);
+        poly.add(mM);
+        poly.add(mousePoly);
+        poly.add(messagePoly);
     }
 
     public void paintComponent(Graphics g) {
@@ -108,16 +127,16 @@ public class PolymorphWindow extends JPanel implements ActionListener {
         g.fillRect(0, 0, 500, 500);
 
         // draw polymorph
-        bluePoly.draw(g);
-        redPoly.draw(g);
-        mM.draw(g);
+        for(Polymorph p: poly) {
+        	p.draw(g);
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         repaint();
-        bluePoly.update();
-        mM.update();
-
+        for(Polymorph p: poly) {
+        	p.update();
+        }
     }
 }

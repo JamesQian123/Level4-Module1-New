@@ -20,7 +20,7 @@ public class RedPolymorph extends Polymorph{
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
 		g.setColor(Color.red);
-		g.drawRect(50,50, 100, 50);
+		g.fillRect(x, y, 25, 25);
 		
 		
 	}
