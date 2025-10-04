@@ -4,15 +4,19 @@ import java.util.ArrayList;
 
 public abstract class Doctor {
 	ArrayList<Patient> patientList = new ArrayList<>();
-	public void assignPatient(Patient patient) {
+	public void assignPatient(Patient patient) throws DoctorFullException{
 		patientList.add(patient);
+		if(patientList.size() > 3) {
+			throw new DoctorFullException();
+		}
 	}
-	
 	public abstract void doMedicine();
 	
 	public abstract boolean performsSurgery();
 	 
 	public abstract boolean makesHouseCalls();
 	
-	public abstract ArrayList getPatients();
+	public ArrayList getPatients() {
+		return patientList;
+	}
 }

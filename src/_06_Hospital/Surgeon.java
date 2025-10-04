@@ -26,7 +26,7 @@ public class Surgeon extends Doctor{
 	@Override
 	public ArrayList getPatients() {
 		// TODO Auto-generated method stub
-		return null;
+		return patientList;
 	}
 	
 

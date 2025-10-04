@@ -28,5 +28,4 @@ public class GeneralPractitioner extends Doctor{
 		return true;
 	}
 	
-	
 }
