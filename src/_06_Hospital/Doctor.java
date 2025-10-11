@@ -7,6 +7,7 @@ public abstract class Doctor {
 	public void assignPatient(Patient patient) throws DoctorFullException{
 		patientList.add(patient);
 		if(patientList.size() > 3) {
+			patientList.remove(3);
 			throw new DoctorFullException();
 		}
 	}
